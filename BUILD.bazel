@@ -1,0 +1,31 @@
+load(":defs.bzl", "collect", "print_config")
+
+print_config(
+    name = "a",
+)
+
+print_config(
+    name = "b",
+    deps = ["a"],
+)
+
+objc_library(
+    name = "main",
+    srcs = ["main.m"],
+    deps = [
+        "a",
+        "b",
+    ],
+)
+
+apple_binary(
+    name = "apple",
+    minimum_os_version = "10.0",
+    platform_type = "ios",
+    deps = ["main"],
+)
+
+collect(
+    name = "collect",
+    deps = ["apple"],
+)

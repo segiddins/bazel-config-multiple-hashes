@@ -1,0 +1,16 @@
+# This can be overridden on the command line with debug, developer, beta, or release.
+build --define=BUILD_TYPE=debug
+
+# Build with sandboxing disabled since it's glacial.
+build --genrule_strategy=standalone
+build --spawn_strategy=standalone
+
+build --apple_platform_type=ios
+# We currently only support building on Xcode 11.6
+# Bazel finds all of the installed Xcodes, and this instructs it to use the Xcode toolchain with the matching version
+build --xcode_version=11.6
+
+# ensure libraries will include source file mappings
+build --compilation_mode=dbg
+
+build --show_result=999 --keep_going
