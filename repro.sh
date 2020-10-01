@@ -1,6 +1,8 @@
 set -euo pipefail
 
-bazel=bazel
+bazel=bazelisk
+
+$bazel version
 
 expect_failure() {
     (
